@@ -1,0 +1,22 @@
+Using a LLM to assist with coding involves knowing how to fine-tune and optimize it. 
+
+After a prompt is taken from the user and goes through a tokenizer to quanitify the query, 
+it goes to a mixture of experts to determine the focus of the prompt and the logic to use 
+in the response. At the code stage, it starts from one state then determines the next potential 
+states (next word). A bunch of different states are given for each word. By setting the 
+temperature high, we widen the range of states, and the possible next states have low probability. 
+By setting it low, we have fewer possible words with higher probability of showing up in the 
+response. 
+
+The state diagram for tokenized input can be greatly influenced by how the prompt is constructed. 
+Even empty lines can drastically change how the coding assistant responds. The context window 
+is a set of possible prompts or inputs that the LLM makes responses and predictions for. A 
+bigger context window allows the LLM to make more sense out of the text. 
+
+Tiktokenizer is a tool that calculates the number of tokens for a given prompt to a LLM, 
+and we can use it to gain some insight about the decision-making behind a LLM.
+
+
+Tokenizer results: 
+token count: 429
+[396, 1925, 1577, 12107, 11, 1181, 9, 10424, 25376, 90, 720, 262, 738, 528, 26410, 284, 220, 12378, 21, 280, 262, 738, 1181, 353, 609, 284, 330, 3204, 886, 262, 528, 77600, 18144, 280, 262, 742, 353, 3589, 280, 262, 422, 1209, 93237, 18144, 284, 77600, 11563, 3232, 11, 507, 71902, 765, 507, 67366, 11, 220, 23835, 21, 595, 366, 220, 15, 1287, 286, 4192, 446, 9595, 311, 1825, 6222, 5044, 1665, 1734, 803, 286, 4974, 7, 16, 317, 262, 557, 262, 282, 67154, 24135, 76, 18144, 11, 26410, 629, 262, 422, 1819, 3589, 284, 71966, 7, 15, 11, 26410, 11, 91928, 13418, 765, 91928, 17933, 11, 28322, 55818, 11, 77600, 18144, 11, 220, 15, 595, 624, 28322, 23615, 1287, 286, 4192, 446, 9595, 311, 2472, 5044, 311, 6222, 5044, 1665, 1734, 803, 286, 4974, 7, 16, 317, 262, 457, 262, 2080, 52434, 1212, 280, 262, 15158, 530, 15158, 280, 262, 422, 320, 24189, 976, 220, 17, 1287, 286, 4192, 446, 8087, 1396, 315, 6105, 25, 1034, 67, 1734, 498, 12107, 317, 286, 4974, 7, 16, 317, 262, 557, 262, 15158, 284, 23243, 1454, 262, 443, 1493, 10222, 198, 262, 422, 320, 10629, 366, 220, 15, 8, 341, 286, 4192, 446, 37, 672, 4745, 1734, 803, 286, 4974, 7, 16, 317, 262, 457, 262, 443, 1716, 1920, 198, 262, 775, 422, 320, 10629, 624, 220, 15, 1287, 286, 443, 3335, 1510, 11695, 198, 286, 89679, 2146, 2527, 11, 1808, 629, 286, 443, 3048, 8970, 315, 1212, 1139, 6222, 5044, 198, 286, 20383, 24807, 11, 612, 2527, 11, 4022, 6294, 52434, 3317, 286, 443, 9203, 279, 5300, 3290, 389, 279, 1716, 1920, 198, 286, 3969, 15618, 15689, 58, 16, 1145, 612, 6645, 58, 16, 2622, 262, 457, 262, 443, 2748, 1920, 198, 262, 775, 517, 286, 443, 2748, 690, 3868, 369, 279, 1716, 311, 4686, 198, 286, 3868, 11260, 629, 286, 443, 11894, 8970, 315, 10295, 323, 3637, 304, 1212, 198, 286, 20383, 2146, 2527, 11, 10295, 11, 4022, 6294, 52434, 3317, 286, 2080, 52434, 842, 280, 286, 89679, 2146, 408, 11, 1808, 629, 286, 443, 10241, 6811, 198, 286, 528, 26401, 17687, 284, 842, 14825, 17687, 482, 1212, 14825, 17687, 280, 286, 528, 26401, 722, 5132, 284, 842, 14825, 44147, 482, 1212, 14825, 44147, 401, 286, 443, 3113, 26401, 892, 198, 286, 4192, 446, 50035, 892, 25, 1034, 67, 23253, 67, 1734, 498, 26401, 17687, 11, 26401, 722, 5132, 629, 286, 4192, 446, 3124, 4686, 1734, 3147, 286, 443, 4148, 279, 6222, 5044, 1665, 198, 286, 77600, 5012, 2125, 3232, 317, 262, 457, 262, 471, 220, 15, 280, 92]
